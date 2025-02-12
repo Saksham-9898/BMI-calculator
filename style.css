@@ -1,0 +1,153 @@
+/* Animated Gradient Background */
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fbc2eb, #a18cd1);
+    background-size: 400% 400%;
+    animation: gradientBG 8s infinite linear;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Gradient Animation */
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Main Container */
+.container {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    width: 320px;
+    animation: slideIn 0.7s ease-out;
+}
+
+/* Slide-in Effect */
+@keyframes slideIn {
+    from {
+        transform: translateY(-30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Input Field with Floating Label Effect */
+.input-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+    transition: 0.3s;
+}
+
+input:focus {
+    border-color: #28a745;
+    box-shadow: 0px 0px 8px rgba(40, 167, 69, 0.5);
+}
+
+/* Floating Labels */
+.input-group label {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: white;
+    padding: 0 5px;
+    font-size: 16px;
+    color: #777;
+    transition: 0.3s;
+    pointer-events: none;
+}
+
+input:focus + label,
+input:not(:placeholder-shown) + label {
+    top: 0;
+    left: 10px;
+    font-size: 12px;
+    color: #0196f3ed;
+}
+
+button {
+    background: #51d8ed;
+    color: rgb(10, 0, 0);
+    border: none;
+    padding: 12px;
+    width: 100%;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s ease;
+}
+
+button::after {
+    content: "";
+    position: absolute;
+    width: 300%;
+    height: 300%;
+    background: rgba(255, 255, 255, 0.3);
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.2s ease-out;
+}
+
+button:active::after {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+button:active {
+    transform: scale(0.96);
+}
+
+#result {
+    margin-top: 15px;
+    font-weight: bold;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.show-result {
+    animation: fadeInSlideUp 0.7s ease-out forwards;
+}
+
+@keyframes fadeInSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.pulse-effect {
+    animation: pulse 1s infinite alternate;
+}
