@@ -20,9 +20,13 @@
             <label for="weight">Weight (kg)</label>
         </div>
 
-        <button onclick="calculateBMI(event)">Calculate BMI</button>
+        <div class="button-container">
+            <button onclick="calculateBMI(event)" class="calculate-btn">Calculate BMI</button>
+            <button onclick="resetFields()" class="reset-btn">Reset</button>
+        </div>
 
-        <div id="result"></div>
+        <div id="message"></div> <!-- Message for invalid input -->
+        <div id="result"></div> <!-- BMI result -->
     </div>
 
     <script src="script.js"></script>

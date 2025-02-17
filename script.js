@@ -4,11 +4,12 @@ function calculateBMI(event) {
     let height = document.getElementById("height").value;
     let weight = document.getElementById("weight").value;
     let result = document.getElementById("result");
+    let message = document.getElementById("message");
 
     if (height === "" || weight === "" || height <= 0 || weight <= 0) {
-        result.innerHTML = "Please enter valid height and weight!";
-        result.style.color = "red";
-        result.classList.remove("show-result", "pulse-effect");
+        message.textContent = "Please enter valid height and weight!";
+        message.style.color = "red";
+        result.innerHTML = "";  // Clear any previous results
         return;
     }
 
@@ -34,5 +35,13 @@ function calculateBMI(event) {
 
     result.innerHTML = `Your BMI: <strong class="pulse-effect">${bmi}</strong> <br> Category: <strong>${category}</strong>`;
     result.style.color = color;
+    message.textContent = ""; // Clear any error message
     result.classList.add("show-result");
+}
+
+function resetFields() {
+    document.getElementById("height").value = "";  // Reset height input
+    document.getElementById("weight").value = "";  // Reset weight input
+    document.getElementById("result").innerHTML = "";  // Clear BMI result
+    document.getElementById("message").textContent = "";  // Clear error message
 }
