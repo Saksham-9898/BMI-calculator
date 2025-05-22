@@ -7,26 +7,58 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h2><u>BMI Calculator</u></h2>
+    <div class="container" role="main" aria-label="BMI Calculator">
+        <h2 class="fade-in"><u>BMI Calculator</u></h2>
 
         <div class="input-group">
-            <input type="number" id="height" required>
+            <input type="number" id="height" required placeholder="Enter height in cm" aria-label="Height in centimeters" min="50" max="300">
             <label for="height">Height (cm)</label>
         </div>
 
         <div class="input-group">
-            <input type="number" id="weight" required>
+            <input type="number" id="weight" required placeholder="Enter weight in kg" aria-label="Weight in kilograms" min="10" max="500">
             <label for="weight">Weight (kg)</label>
         </div>
 
         <div class="button-container">
-            <button onclick="calculateBMI(event)" class="calculate-btn">Calculate BMI</button>
-            <button onclick="resetFields()" class="reset-btn">Reset</button>
+            <button onclick="calculateBMI(event)" class="calculate-btn" id="calculate-btn">Calculate BMI</button>
+            <button onclick="resetFields()" class="reset-btn" id="reset-btn">Reset</button>
         </div>
 
-        <div id="message"></div> <!-- Message for invalid input -->
-        <div id="result"></div> <!-- BMI result -->
+        <div id="message" role="alert" aria-live="assertive"></div>
+        <div id="result" class="result-card" tabindex="0"></div>
+
+        <div class="bmi-meter-card">
+            <h3>BMI Meter</h3>
+            <div class="bmi-meter-wrapper">
+                <svg id="bmi-meter" width="140" height="140" viewBox="0 0 140 140" aria-label="Graphical BMI Meter">
+                    <circle cx="70" cy="70" r="60" stroke="#eee" stroke-width="16" fill="none" />
+                    <path id="bmi-arc" stroke="#00C9A7" stroke-width="16" fill="none" />
+                    <text id="bmi-meter-value" x="70" y="80" text-anchor="middle" font-size="2em" fill="#333" font-family="Poppins, sans-serif"></text>
+                </svg>
+                <div class="bmi-meter-labels">
+                    <span style="color:#ff9807">Underweight</span>
+                    <span style="color:#00C9A7">Normal</span>
+                    <span style="color:#FFD700">Overweight</span>
+                    <span style="color:#dc3545">Obese</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="bmi-chart-card" tabindex="0" aria-label="BMI Range Chart">
+            <h3>BMI Range Chart</h3>
+            <table>
+                <thead>
+                    <tr><th>Category</th><th>BMI Range</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Underweight</td><td>&lt; 18.5</td></tr>
+                    <tr><td>Normal</td><td>18.5 – 24.9</td></tr>
+                    <tr><td>Overweight</td><td>25 – 29.9</td></tr>
+                    <tr><td>Obese</td><td>30+</td></tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <script src="script.js"></script>
