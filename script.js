@@ -39,6 +39,7 @@ function animateBMIMeterArc(targetPercent, color, bmi) {
     }, 12);
 }
 
+// Final UI/UX refinements
 function calculateBMI(event) {
     event.preventDefault();
     let height = parseFloat(document.getElementById("height").value);
@@ -60,9 +61,14 @@ function calculateBMI(event) {
     if (isNaN(height) || isNaN(weight) || height <= 0 || weight <= 0) {
         message.textContent = "Please enter valid height and weight!";
         message.style.color = "#ff3b3b";
+        message.style.fontSize = "2.1rem";
+        message.style.fontWeight = "900";
+        message.style.letterSpacing = "1px";
         result.innerHTML = "";
         if (meterArc) meterArc.setAttribute("d", "");
         if (meterValue) meterValue.textContent = "";
+        // Scroll to message for accessibility
+        message.scrollIntoView({ behavior: 'smooth', block: 'center' });
         return;
     }
 
@@ -91,15 +97,17 @@ function calculateBMI(event) {
     }
 
     result.innerHTML = `
-        <div><span style="font-size:1.3em;font-weight:600;">Your BMI:</span> <strong style="color:${color};font-size:1.5em;">${bmi}</strong></div>
-        <div>Category: <strong style="color:${color};">${category}</strong></div>
-        <div style="margin-top:8px;font-size:0.98em;">${tip}</div>
+        <div style="font-size:1.3em;font-weight:600;">Your BMI: <strong style="color:${color};font-size:1.5em;">${bmi}</strong></div>
+        <div style="margin-top:4px;">Category: <strong style="color:${color};">${category}</strong></div>
+        <div style="margin-top:10px;font-size:1.05em;line-height:1.5;">${tip}</div>
     `;
     result.style.color = color;
     message.textContent = "";
     setTimeout(() => result.classList.add("show-result"), 100);
     result.setAttribute('tabindex', '0');
     result.focus();
+    // Scroll to result for smooth UX
+    result.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
     // --- BMI Meter Drawing with Animation ---
     if (meterArc && meterValue) {
